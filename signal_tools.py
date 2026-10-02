@@ -62,3 +62,22 @@ def plotFFT(frequencies, fft_magnitude):
     )
 
     return fig
+
+# calculate signal to noise ratio (SNR)
+def calculateSNR(input_signal, signal_frequency=10, sample_rate=50):
+    sample_count = len(input_signal)
+    time = np.arange(sample_count) / sample_rate
+
+    design_matrix = np.column_stack([
+        np.sin(2 * np.pi * signal_frequency * time),
+        np.cos(2 * np.pi * signal_frequency * time)
+    ])
+
+    coefficients, *_ = np.linalg.lstsq(design_matrix, input_signal, rcond=None)
+    estimated_signal = design_matrix @ coefficients
+    noise = input_signal - estimated_signal
+
+    signal_power = np.mean(np.square(estimated_signal))
+    noise_power = np.mean(np.square(noise))
+    snr = 10 * np.log10(signal_power / noise_power)
+    return snr
