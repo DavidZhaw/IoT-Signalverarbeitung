@@ -10,16 +10,24 @@ This repository contains a Jupyter Notebook (`fft-example.ipynb`) that demonstra
 - **FIR Filter Design and Application**:  
     A Finite Impulse Response (FIR) filter is designed using an online tool. The filter coefficients are applied to the original signal via convolution to remove unwanted frequencies.
 
-## Requirements
+## Installation
 
-- Python 3.x
-- `numpy`
-- `scipy`
-- `matplotlib`
+### Windows / PowerShell
 
-Install dependencies with:
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+### macOS / Linux
+
 ```bash
-pip install numpy scipy matplotlib
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ## Usage
